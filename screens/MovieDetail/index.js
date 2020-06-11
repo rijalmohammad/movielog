@@ -1,33 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-} from 'react-native';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {ScrollView} from 'react-native';
 import axios from 'axios';
+import {useRoute} from '@react-navigation/native';
+import MovieInfo from './components/MovieInfo';
 
 const MovieDetail = () => {
   const [movieData, setMovieData] = useState([]);
+  const route = useRoute();
+
+  const movieId = route.params.id;
 
   useEffect(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/movie/299534?api_key=6911e2f007fccbc5516afc66df11aae9&language=en-US',
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=6911e2f007fccbc5516afc66df11aae9&language=en-US`,
       )
       .then(postData => {
         const newData = postData.data;
         setMovieData(newData);
       });
-  }, []);
+  }, [movieId]);
 
   return (
-    <ScrollView>
-      <Text>{movieData.title}</Text>
-      <Text>{movieData.overview}</Text>
+    <ScrollView style={{backgroundColor: 'white'}}>
+      <MovieInfo data={movieData} />
     </ScrollView>
   );
 };
