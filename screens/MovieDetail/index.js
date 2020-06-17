@@ -3,6 +3,9 @@ import {ScrollView} from 'react-native';
 import axios from 'axios';
 import {useRoute} from '@react-navigation/native';
 import MovieInfo from './components/MovieInfo';
+import MovieStory from './components/MovieStory';
+import MovieCast from './components/MovieCast';
+import MoviePicker from './components/MoviePicker';
 
 const MovieDetail = () => {
   const [movieData, setMovieData] = useState([]);
@@ -24,6 +27,9 @@ const MovieDetail = () => {
   return (
     <ScrollView style={{backgroundColor: 'white'}}>
       <MovieInfo data={movieData} />
+      <MovieStory data={movieData} />
+      <MovieCast movieId={movieId} />
+      <MoviePicker movieId={movieId} />
     </ScrollView>
   );
 };

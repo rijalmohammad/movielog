@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
@@ -17,7 +18,7 @@ const MovieList = () => {
   useEffect(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/discover/movie?api_key=6911e2f007fccbc5516afc66df11aae9&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1',
+        'https://api.themoviedb.org/3/trending/movie/day?api_key=6911e2f007fccbc5516afc66df11aae9',
       )
       .then(postData => {
         const newData = postData.data.results;
@@ -42,7 +43,10 @@ const MovieList = () => {
                 style={styles.movieImage}
               />
               <Text style={styles.popularMovieTitle}>{item.title}</Text>
-              <Text>{item.vote_average}</Text>
+              <View style={styles.popularMovieStar}>
+                <MaterialCommunityIcons name="star" size={20} color="orange" />
+                <Text>{item.vote_average}</Text>
+              </View>
             </View>
           </TouchableWithoutFeedback>
         ))}
@@ -64,6 +68,10 @@ const styles = StyleSheet.create({
   popularItem: {
     width: 150,
     marginRight: 16,
+  },
+  popularMovieStar: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   popularMovieTitle: {
     fontWeight: 'bold',

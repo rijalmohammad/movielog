@@ -16,7 +16,6 @@ const Timeline = () => {
       <MovieCarousel />
       <MovieList />
       <Button title="Logout" onPress={() => auth.logout()} />
-      <Text>{auth.sessionId}</Text>
     </ScrollView>
   );
 };
@@ -31,6 +30,7 @@ const Home = () => {
         options={{
           title: '',
           headerTransparent: true,
+          headerTintColor: '#fff',
         }}
       />
     </Stack.Navigator>

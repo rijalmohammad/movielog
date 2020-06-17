@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MovieInfo = ({data}) => {
   const {
@@ -34,9 +35,11 @@ const MovieInfo = ({data}) => {
             </View>
             <View style={styles.topNumber}>
               <View style={styles.topRating}>
+                <MaterialCommunityIcons name="star" size={20} color="orange" />
                 <Text>{vote_average}</Text>
               </View>
               <View style={styles.topDuration}>
+                <MaterialCommunityIcons name="timer" size={20} color="black" />
                 <Text>{runtime} min</Text>
               </View>
             </View>
@@ -102,8 +105,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     flexDirection: 'row',
   },
-  topRating: {},
+  topRating: {
+    flexDirection: 'row',
+  },
   topDuration: {
+    flexDirection: 'row',
     marginLeft: 24,
   },
   topGenre: {

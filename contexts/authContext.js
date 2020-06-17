@@ -7,7 +7,27 @@ const AuthContextProvider = ({children}) => {
   const [authStatus, setAuthStatus] = useState({
     isAuth: false,
     sessionId: '',
+    listValue: [],
   });
+
+  const loadList = async () => {
+    const getAccount = await axios.get(
+      `https://api.themoviedb.org/3/authentication/token/new?api_key=6911e2f007fccbc5516afc66df11aae9&session_id=${
+        authStatus.sessionId
+      }`,
+    );
+
+    const accountId = getAccount.data.id;
+
+    const getCreatedList = await axios.get(
+      `https://api.themoviedb.org/3/account/${accountId}/lists?api_key=6911e2f007fccbc5516afc66df11aae9&language=en-US&page=1&session_id=${
+        authStatus.sessionId
+      }`,
+    );
+
+    const listData = getCreatedList.data.results;
+    setAuthStatus({...authStatus, listValue: listData});
+  };
 
   const login = async (username, password) => {
     const requestToken = await axios.get(
@@ -65,7 +85,7 @@ const AuthContextProvider = ({children}) => {
   };
 
   return (
-    <AuthContext.Provider value={{...authStatus, login, logout}}>
+    <AuthContext.Provider value={{...authStatus, login, logout, loadList}}>
       {children}
     </AuthContext.Provider>
   );
