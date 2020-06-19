@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {AuthContext} from './contexts/authContext';
+import {Input, Button} from 'react-native-elements';
 
 const LoginApp = () => {
   const [username, setUsername] = useState('');
@@ -13,26 +14,39 @@ const LoginApp = () => {
   };
 
   return (
-    <View>
-      <Text>Ini Belum Login</Text>
-      <TextInput
+    <View style={styles.appContainer}>
+      <Text style={styles.appTitle}>Welcome to Movielog</Text>
+      <Input
+        placeholder="Username"
         onChangeText={text => setUsername(text)}
         value={username}
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
       />
-      <TextInput
+      <Input
+        placeholder="Password"
         onChangeText={text => setPassword(text)}
         value={password}
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
         secureTextEntry={secureView}
-      />
-      <Button
-        title={secureView ? 'Show Password' : 'Hide Password'}
-        onPress={() => setSecureView(!secureView)}
       />
       <Button title="Login" onPress={() => handleLogin()} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  appTitle: {
+    marginBottom: 24,
+    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: 'center',
+  },
+  appContainer: {
+    marginTop: 40,
+    paddingRight: 16,
+    paddingLeft: 16,
+  },
+  storyDesc: {
+    marginTop: 8,
+  },
+});
 
 export default LoginApp;

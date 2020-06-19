@@ -32,9 +32,11 @@ const MoviePicker = ({movieId}) => {
   }, [auth]);
 
   return (
-    <View>
-      <Text>Add This Movie To</Text>
-      <View>
+    <View style={{margin: 16}}>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <Text style={{fontWeight: 'bold', fontSize: 20, marginRight: 8}}>
+          Add This Movie To
+        </Text>
         <Picker
           selectedValue={val}
           style={{height: 50, width: 200}}
@@ -44,9 +46,6 @@ const MoviePicker = ({movieId}) => {
           ))}
         </Picker>
       </View>
-      <Text>
-        {val} - {movieId}
-      </Text>
       <Button title="Add" onPress={() => handleAdd()} />
     </View>
   );

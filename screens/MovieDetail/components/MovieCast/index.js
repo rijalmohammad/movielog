@@ -41,6 +41,7 @@ const MovieCast = ({movieId}) => {
 const styles = StyleSheet.create({
   castContainer: {
     margin: 16,
+    marginBottom: 0,
   },
   castTitle: {
     fontSize: 20,

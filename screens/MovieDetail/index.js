@@ -6,6 +6,7 @@ import MovieInfo from './components/MovieInfo';
 import MovieStory from './components/MovieStory';
 import MovieCast from './components/MovieCast';
 import MoviePicker from './components/MoviePicker';
+import MovieRating from './components/MovieRating';
 
 const MovieDetail = () => {
   const [movieData, setMovieData] = useState([]);
@@ -30,6 +31,7 @@ const MovieDetail = () => {
       <MovieStory data={movieData} />
       <MovieCast movieId={movieId} />
       <MoviePicker movieId={movieId} />
+      <MovieRating movieId={movieId} />
     </ScrollView>
   );
 };

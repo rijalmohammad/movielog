@@ -8,6 +8,7 @@ const AuthContextProvider = ({children}) => {
     isAuth: false,
     sessionId: '',
     listValue: [],
+    listRated: [],
   });
 
   const loadList = async () => {
@@ -25,8 +26,15 @@ const AuthContextProvider = ({children}) => {
       }`,
     );
 
+    const getRatedMovies = await axios.get(
+      `https://api.themoviedb.org/3/account/${accountId}/rated/movies?api_key=6911e2f007fccbc5516afc66df11aae9&language=en-US&session_id=${
+        authStatus.sessionId
+      }&sort_by=created_at.asc&page=1`,
+    );
+
     const listData = getCreatedList.data.results;
-    setAuthStatus({...authStatus, listValue: listData});
+    const ratedData = getRatedMovies.data.results;
+    setAuthStatus({...authStatus, listValue: listData, listRated: ratedData});
   };
 
   const login = async (username, password) => {

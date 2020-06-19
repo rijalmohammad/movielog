@@ -3,6 +3,7 @@ import {View, Button, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import {AuthContext} from '../../../contexts/authContext';
+import {Input} from 'react-native-elements';
 
 const CollectionAdd = () => {
   const navigation = useNavigation();
@@ -30,13 +31,15 @@ const CollectionAdd = () => {
   };
 
   return (
-    <View>
-      <TextInput
+    <View style={{margin: 16}}>
+      <Input
+        placeholder="Judul List"
         onChangeText={text => setName(text)}
         value={name}
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}
       />
-      <TextInput
+      <Input
+        placeholder="Deskripsi List"
         onChangeText={text => setDesc(text)}
         value={desc}
         style={{height: 40, borderColor: 'gray', borderWidth: 1}}

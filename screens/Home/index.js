@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import {ScrollView, Button, Text} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import MovieCarousel from './components/MovieCarousel';
 import MovieList from './components/MovieList';
 import MovieDetail from '../MovieDetail';
 import {AuthContext} from '../../contexts/authContext';
+import {Button} from 'react-native-elements';
 
 const Stack = createStackNavigator();
 
@@ -15,7 +16,9 @@ const Timeline = () => {
     <ScrollView>
       <MovieCarousel />
       <MovieList />
-      <Button title="Logout" onPress={() => auth.logout()} />
+      <View style={{margin: 16}}>
+        <Button title="Logout" onPress={() => auth.logout()} />
+      </View>
     </ScrollView>
   );
 };
